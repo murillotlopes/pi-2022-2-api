@@ -1,9 +1,9 @@
 import express from 'express'
-// import router from './routers'
+import registroRotas from './projects/router'
 
 const app = express()
 
 app.use(express.json())
-// app.use('/api', router)
+registroRotas(app)
 
 export default app

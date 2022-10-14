@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { SensorClimatico } from "./SensorClimatico"
 
 @Entity()
 export class DadoClimatico {
@@ -21,4 +22,6 @@ export class DadoClimatico {
     @Column()
     sensor_climatico_id: number
 
+    @ManyToOne(() => SensorClimatico, (sensor) => sensor.id)
+    sensor_id: number
 }

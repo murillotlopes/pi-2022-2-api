@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { DadoClimatico } from "./DadoClimatico";
 
 @Entity()
 export class SensorClimatico {
@@ -31,4 +32,7 @@ export class SensorClimatico {
 
     @Column({ nullable: true })
     longitude?: string
+
+    @OneToMany(() => DadoClimatico, (dadoClimatico) => dadoClimatico.sensor_id)
+    dados_climaticos: DadoClimatico[]
 }
