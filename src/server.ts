@@ -6,7 +6,7 @@ config()
 
 AppDataSource.initialize().then(() => {
     console.log('Banco de dados conectado')
-    const porta = +process.env.PORT | 3001
+    const porta = process.env.PORT || 3001
     app.listen(porta, () => {
         console.log(`API rodando na porta ${porta} de localhost`)
     })
