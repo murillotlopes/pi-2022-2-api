@@ -8,7 +8,7 @@
       "npm": "8.5.x"
    },
    "scripts": {
-      "start": "node build/server.js",
+      "start": "node dist/server.js",
       "dev": "ts-node-dev --files --rs src/server.ts",
       "build": "tsc",
       "typeorm": "typeorm-ts-node-commonjs",
