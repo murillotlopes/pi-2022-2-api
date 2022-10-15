@@ -3,6 +3,10 @@
    "version": "1.0.0",
    "description": "",
    "main": "src/server.ts",
+   "engines": {
+      "node": "14.18.x",
+      "npm": "8.5.x"
+   },
    "scripts": {
       "start": "node build/server.js",
       "dev": "ts-node-dev --files --rs src/server.ts",
