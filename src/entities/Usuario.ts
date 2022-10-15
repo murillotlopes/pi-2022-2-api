@@ -1,3 +1,4 @@
+import { compare } from "bcryptjs";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -17,4 +18,7 @@ export class Usuario {
     @Column({ default: false })
     administrador: boolean
 
+    compareSenha = async (pwdString: string): Promise<boolean> => {
+        return await compare(pwdString, this.senha);
+    };
 }

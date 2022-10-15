@@ -1,9 +1,8 @@
 import { Router } from "express";
+import dadoClimaControlador from "./dadoClima.controlador";
 
 const dadoClimaRota = Router()
 
-dadoClimaRota.get('/por-cidade/:cidade')
-dadoClimaRota.get('/por-localizacao/:localizacao')
-dadoClimaRota.post('/registrar/:sensor')
+dadoClimaRota.post('/registrar', dadoClimaControlador.registrar)
 
 export default dadoClimaRota

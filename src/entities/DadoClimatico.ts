@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn } from "typeorm"
 import { SensorClimatico } from "./SensorClimatico"
 
 @Entity()
@@ -7,7 +7,7 @@ export class DadoClimatico {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({ default: new Date().toISOString() })
+    @CreateDateColumn()
     data_registro: Date
 
     @Column()
@@ -19,9 +19,7 @@ export class DadoClimatico {
     @Column()
     nivel: number
 
-    @Column()
-    sensor_climatico_id: number
-
-    @ManyToOne(() => SensorClimatico, (sensor) => sensor.id)
-    sensor_id: number
+    @ManyToOne(type => SensorClimatico, { nullable: false })
+    @JoinColumn({ name: 'sensor_id' })
+    sensor: SensorClimatico
 }
