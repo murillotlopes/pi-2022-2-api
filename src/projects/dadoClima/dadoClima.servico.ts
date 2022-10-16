@@ -1,24 +1,22 @@
 import { Request } from "express"
 import { DadoClimatico } from "../../entities/DadoClimatico"
-import SensorClimaRepositorio from "../sensorClimatico/sensorClima.repositorio"
-import DadoClimaRepositorio from "./dadoClima.repositorio"
+import globalService from "../../util/globalService"
+import sensorClimaRepositorio from "../sensorClimatico/sensorClima.repositorio"
+import dadoClimaRepositorio from "./dadoClima.repositorio"
 
 class DadoClimaServico {
-    registrar = async (req: Request) => {
-        const payload: DadoClimatico = req.body
-        const sensorId = payload['sensor_id']
-        try {
-            if (await SensorClimaRepositorio.buscarId(sensorId)) {
-                console.log('entrei')
-                await DadoClimaRepositorio.registrar(payload)
-                return { status: 200, message: { message: "Registrado" } }
-            }
-        } catch (error) {
-
-            return { status: 500, message: { message: "Erro Interno do Servidor!" } }
-        }
-
+  registrar = async (req: Request) => {
+    try {
+      const dado: DadoClimatico = req.body
+      if (await sensorClimaRepositorio.buscarSensor({ id: dado.sensor })) {
+        await dadoClimaRepositorio.registrar(dado)
+        return globalService.httpStatus(200, "Registrado")
+      }
+      return globalService.httpStatus(400, 'Sensor informado não encontrado')
+    } catch (error) {
+      return globalService.httpStatus(500)
     }
+  }
 }
 
 export default new DadoClimaServico()

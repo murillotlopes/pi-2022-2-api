@@ -17,8 +17,9 @@ class SensorClimaRepositorio {
         }
     }
 
-    buscarId = async (sensorId: number) => {
-        return await this.rep.findOneBy({ id: sensorId })
+    buscarSensor = async (payload: object) => {
+        console.log(payload)
+        return await this.rep.findOneBy({ ...payload })
     }
 }
 
