@@ -4,22 +4,22 @@ import { SensorClimatico } from "./SensorClimatico"
 @Entity()
 export class DadoClimatico {
 
-    @PrimaryGeneratedColumn()
-    id: number
+  @PrimaryGeneratedColumn()
+  id: number
 
-    @CreateDateColumn()
-    data_registro: Date
+  @CreateDateColumn()
+  data_registro: Date
 
-    @Column()
-    precipitacao: number
+  @Column()
+  precipitacao: number
 
-    @Column()
-    vasao: string
+  @Column()
+  vasao: string
 
-    @Column()
-    nivel: number
+  @Column()
+  nivel: number
 
-    @ManyToOne(type => SensorClimatico, { nullable: false })
-    @JoinColumn({ name: 'sensor_id' })
-    sensor: SensorClimatico
+  @ManyToOne(type => SensorClimatico, { nullable: false })
+  @JoinColumn({ name: 'sensor_id' })
+  sensor: SensorClimatico
 }
